@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diet Planner</title>
+</head>
+<body>
+    <h1>Diet Planner</h1>
+
+    <form method="POST">
+        <label for="budget">Budget (₹):</label>
+        <input type="number" name="budget" id="budget" required><br><br>
+
+        <label for="veg_only">Veg only?</label>
+        <select name="veg_only" id="veg_only">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select><br><br>
+
+        <button type="submit">Get Meal Plan</button>
+    </form>
+
+    {% if meal_plan %}
+        <h2>Your Meal Plan:</h2>
+        <ul>
+            {% for item in meal_plan %}
+                <li>{{ item.food }} - Cost: ₹{{ item.cost }}, Protein: {{ item.protein }}g, Calories: {{ item.calories }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Total Summary</h3>
+        <p>Total Cost: ₹{{ total_cost }}</p>
+        <p>Total Protein: {{ total_protein }} g</p>
+        <p>Total Calories: {{ total_calories }}</p>
+    {% endif %}
+</body>
+</html>
